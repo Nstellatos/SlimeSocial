@@ -1,0 +1,9 @@
+<%= form_for @recipe do |f| %>
+
+<div class="field">
+<%= f.text_area :title, label: "Slime Name" %>
+<%= f.text_area :description, placeholder: "Add a short description about your recipe" %>
+</div>
+<%= f.submit "Post", class: "btn btn-primary" %>
+
+<% end %>

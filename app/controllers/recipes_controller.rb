@@ -1,6 +1,11 @@
 class RecipesController < ApplicationController
-    before_action :authenticate_user!, only: [:create, :edit, :destroy]
+    before_action :authenticate_user!, only: [:create, :new, :edit, :destroy]
 
+    
+    def new 
+        @recipe = current_user.recipes.build
+    end
+    
     def create 
         @recipe = current_user.recipes.build(recipe_params)
         if @recipe.save 
@@ -11,6 +16,7 @@ class RecipesController < ApplicationController
         end
     end
 
+    
 
     private 
 
