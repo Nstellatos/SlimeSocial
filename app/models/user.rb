@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-  has_many :recipes 
+  has_many :recipes, dependent: :destroy #recipes are deleted when the user is destroyed
 end
