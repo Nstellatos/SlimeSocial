@@ -5,6 +5,9 @@ class Recipe < ApplicationRecord
   has_many_attached :image
   default_scope -> { order(created_at: :desc) } #sets default order of recipes retrieved in db (newest to oldest)
 
+  accepts_nested_attributes_for :recipe_ingredients, :reject_if => :all_blank, :allow_destroy => true
+
+
   validates :user_id, presence: true
   validates :title, presence: true, length: {maximum: 120}
   validates :description, presence: true, length: {maximum: 260}
