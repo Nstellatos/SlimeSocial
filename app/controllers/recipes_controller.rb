@@ -1,16 +1,19 @@
 class RecipesController < ApplicationController
-    before_action :logged_in_user, only: [:create, :destroy]
+    before_action :logged_in_user, only: [:index, :create, :destroy]
     before_action :correct_user, only: [:destroy]
 
-    
+    def index 
+        @recipes = Recipe.paginate(page: params[:page])
+    end
+
     def create 
         @recipe = current_user.recipes.build(recipe_params)
-        @recipe.image.attatch(params[:recipe][:image])
+        @recipe.image.attach(params[:recipe][:image])
         if @recipe.save 
             flash[:success] = "Recipe created"
             redirect_to root_path
         else
-            @slime_recipes 
+            @slime_recipes = []
             current_user.slimes.paginate(page: params[:page])
             render 'static_pages/home'
         end
@@ -20,6 +23,7 @@ class RecipesController < ApplicationController
         @recipe.destroy 
         flash[:success] = "slime deleted"
         redirect_to root_url 
+    end
 
     
 
@@ -33,15 +37,4 @@ class RecipesController < ApplicationController
         @recipe = current_user.recipe.find_by(id: params[:id])
         redirect_to root_url if @recipe.nil?
     end
-
-
-
-
-
-
-
-
-
-
-
 end
