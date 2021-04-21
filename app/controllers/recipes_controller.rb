@@ -5,6 +5,7 @@ class RecipesController < ApplicationController
     
     def create 
         @recipe = current_user.recipes.build(recipe_params)
+        @recipe.image.attatch(params[:recipe][:image])
         if @recipe.save 
             flash[:success] = "Recipe created"
             redirect_to root_path
@@ -25,7 +26,7 @@ class RecipesController < ApplicationController
     private 
 
     def recipe_params 
-        params.require(:recipe).permit(:title, :description)
+        params.require(:recipe).permit(:title, :description, :image)
     end 
 
     def correct_user 
