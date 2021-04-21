@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
       #module helper to log a user in
       log_in user 
       #redirect
+      redirect_to user 
     else
       #if email/password not match
       flash.now[:danger] = "email or password is invalid"
@@ -15,7 +16,10 @@ class SessionsController < ApplicationController
       render 'new'
     end
   end
-
+  def destroy 
+    log_out 
+    redirect_to root_url
+  end
 
 
 
