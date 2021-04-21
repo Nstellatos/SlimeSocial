@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-    before_action :authenticate_user!, only: [:create, :new, :edit, :destroy]
+    before_action :logged_in_user, only: [:create, :destroy]
 
     
     def new 
