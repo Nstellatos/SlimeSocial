@@ -7,5 +7,8 @@
 <%= f.text_area :description, placeholder: "Add a short description about your recipe" %>
 </div>
 <%= f.submit "Post", class: "btn btn-primary" %>
+<span class="image">
+<%= f.file_field :image %>
+</span>
 
 <% end %>
