@@ -1,7 +1,7 @@
 <li id="recipe-<%= recipe.id %> ">
 <span class="user"><%= link_to recipe.user.name, recipe.user %></span>
 <span class="content">
-<%= image_tag recipe.image if recipe.image.attatched? %>
+<%= image_tag recipe.image if recipe.image.attached? %>
 <%= recipe.title %>
 
 </span>
