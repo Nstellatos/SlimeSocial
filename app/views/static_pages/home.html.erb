@@ -1,5 +1,21 @@
+<% if logged_in? %>
+<div class="row">
+<aside class="col-md-4">
+<section class="user_info">
+<%= render 'shared/user_info' %>
+</section>
+
+<section class="recipe_form">
+<%= render 'shared/recipe_form' %>
+</section>
+</aside>
+</div>
+<% else %>
+
 <div class="center jumbotron">
 <h1>Welcome to Slime Social!</h1>
 <h2>Connect with friends, share recipes & more!</h2>
 <%= link_to "Sign Up Now!", signup_path, class: "btn btn-lg btn-primary" %>
 </div>
+
+<% end %>
