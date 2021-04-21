@@ -14,7 +14,7 @@ module SessionsHelper
     end
 
     #boolean to determin is a user is logged in
-    def user_logged_in?
+    def logged_in?
         !current_user.nil?
     end
 
