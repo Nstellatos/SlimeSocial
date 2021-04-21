@@ -13,6 +13,13 @@ class UsersController < ApplicationController
     end
 
     def create 
+        @user = User.new(user_params)
+        if @user.save 
+            flash[:success] = "Welcome to Slime Social!"
+            redirect_to @user 
+        else
+            render 'new'
+        end
     end
 
     def edit 
@@ -23,7 +30,7 @@ class UsersController < ApplicationController
 
     def destroy
     end
-    
+
 
 
 
