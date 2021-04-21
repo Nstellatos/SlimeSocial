@@ -1,0 +1,11 @@
+<%= form_with(model: @recipe, local: true) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+
+<div class="field">
+<h1>Slime Name: </h1>
+<%= f.text_area :title %>
+<%= f.text_area :description, placeholder: "Add a short description about your recipe" %>
+</div>
+<%= f.submit "Post", class: "btn btn-primary" %>
+
+<% end %>
