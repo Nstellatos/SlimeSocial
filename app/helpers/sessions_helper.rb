@@ -18,9 +18,18 @@ module SessionsHelper
         !current_user.nil?
     end
 
+    # returns true if the given user is the current user
+    def current_user?(user)
+        user && user == current_user 
+    end
+
+
+    #logs out the current user
     def log_out 
         session.delete(:user_id)
         @current_user = nil 
     end
+
+
 
 end
