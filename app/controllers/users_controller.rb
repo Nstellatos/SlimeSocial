@@ -8,10 +8,13 @@ class UsersController < ApplicationController
 
     def index 
         @users = User.paginate(page: params[:page])
+
     end
 
     def show 
         @user = User.find(params[:id])
+        @recipes = @user.recipes.paginate(page: params[:page])
+
     end
 
     def new
@@ -56,13 +59,7 @@ class UsersController < ApplicationController
 
     #before filters
 
-    #confirms a logged in user
-    def logged_in_user
-        unless logged_in?
-            flash[:danger] = "please log in"
-            redirect_to login_url
-        end
-    end
+    
     #confirms the correct user
     def correct_user 
     @user = User.find(params[:id])

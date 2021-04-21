@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-has_many :recipes 
+has_many :recipes, dependent: :destroy 
 
 
     validates :name, presence: true
@@ -16,5 +16,7 @@ validates :email, presence: true, length: { maximum: 200 },
 has_secure_password
     validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
 
-    
+  def slimes
+    Recipe.where("user_id = ?", id)
+  end  
 end

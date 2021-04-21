@@ -1,0 +1,7 @@
+<% if @slime_recipes.any? %>
+<ol class="recipes">
+<%= render @slime_recipes %>
+</ol>
+<%= will_paginate @slime_recipes,
+    params: { controller: :static_pages, action: :home } %>
+<% end %>
