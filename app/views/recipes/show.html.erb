@@ -1,3 +1,8 @@
+<div class="col-md-4">
+<%= image_tag @recipe.image if @recipe.image.attached? %>
+</div>
+
+
 <div class="col-md-8">
 <div class="recipe-info">
     <h1 class="recipe-title"> <%= @recipe.title %> </h1>
@@ -5,7 +10,7 @@
     <p class="recipe-desc"> <%= @recipe.description %> </p>
     <p>
   
-
+<h1>Ingredients: </h1>
    <% @recipe.recipe_ingredients.each do |i| %>
         <% if i.ingredient.name%>
             <li><%= i.ingredient.name %></li>
