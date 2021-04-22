@@ -1,9 +1,14 @@
 class RecipesController < ApplicationController
-    before_action :logged_in_user, only: [:index, :create, :destroy]
+    before_action :logged_in_user, only: [:index, :new, :create, :destroy]
     before_action :correct_user, only: [:destroy]
 
     def index 
         @recipes = Recipe.paginate(page: params[:page])
+    end
+
+    def new
+        @recipe = Recipe.new
+        @recipe.recipe_ingredients.build.build_ingredient
     end
 
     def create 
@@ -30,7 +35,8 @@ class RecipesController < ApplicationController
     private 
 
     def recipe_params 
-        params.require(:recipe).permit(:title, :description, :image)
+        params.require(:recipe).permit(:title, :description, :image, 
+            recipe_ingredients_attributes: [:id, :ingredient_name, :_destroy])
     end 
 
     def correct_user 
