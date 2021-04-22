@@ -1,0 +1,15 @@
+<div class="col-md-8">
+<div class="recipe-info">
+    <h1 class="recipe-title"> <%= @recipe.title %> </h1>
+	<h2>posted by: <%= @recipe.user.name %> </h2>
+    <p class="recipe-desc"> <%= @recipe.description %> </p>
+    <p>
+  
+
+   <% @recipe.recipe_ingredients.each do |i| %>
+        <% if i.ingredient.name%>
+            <li><%= i.ingredient.name %></li>
+        <% end %>
+    <% end %>
+</div>
+</div>
