@@ -1,8 +1,28 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+<div class="recipe-info">
 <li id="recipe-<%= recipe.id %> ">
 <span class="user"><%= link_to recipe.user.name, recipe.user %></span>
 <span class="content">
 <%= image_tag recipe.image if recipe.image.attached? %>
-<%= recipe.title %>
+ <h4> <%= link_to recipe.title, recipe_path(recipe) %>
+
 
 </span>
 <span class="timestamp">
@@ -12,3 +32,4 @@ Posted <%= time_ago_in_words(recipe.created_at) %> ago
 <% end %>
 </span>
 </li>
+</div>
