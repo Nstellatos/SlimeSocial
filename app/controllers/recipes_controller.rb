@@ -19,14 +19,14 @@ class RecipesController < ApplicationController
 
     def create 
         @recipe = current_user.recipes.build(recipe_params)
-        @recipe.image.attach(params[:recipe][:image])
         if @recipe.save 
             flash[:success] = "Recipe created"
-            redirect_to root_path
+            redirect_to @recipe
         else
-            @slime_recipes = []
-            current_user.slimes.paginate(page: params[:page])
-            render 'static_pages/home'
+            render 'new'
+            # @slime_recipes = []
+            # current_user.slimes.paginate(page: params[:page])
+            # render 'static_pages/home'
         end
     end
 
@@ -53,8 +53,8 @@ class RecipesController < ApplicationController
     private 
 
     def recipe_params 
-        params.require(:recipe).permit(:title, :description, :image, 
-            recipe_ingredients_attributes: [:id, :name, :_destroy])
+        params.require(:recipe).permit(:title, :description, :recipe_img, 
+            recipe_ingredients_attributes: [:id, :ingredient_name, :_destroy])
     end 
 
     def correct_user 
