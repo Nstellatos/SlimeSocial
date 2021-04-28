@@ -29,6 +29,11 @@ gem 'bootstrap-sass', '3.4.1'
  gem 'image_processing', '1.9.3'
  gem 'mini_magick', '4.9.5'
  gem 'cocoon'
+ gem "paperclip", "~> 6.0.0"
+ gem 'omniauth'
+ gem 'omniauth-facebook'
+ gem 'omniauth-rails_csrf_protection'
+ gem 'dotenv-rails'
 
 
 
