@@ -11,15 +11,18 @@
     <p>
   
 <h1>Ingredients: </h1>
-
-
-
-
  <ul>
           <% @recipe.recipe_ingredients.each do |i| %>
             <li><%= i.ingredient_name %></li>
           <% end %>
         </ul>
+<h1>Steps </h1>
+<% @recipe.steps.each do |s| %>
+            <li><%= s.direction %></li>
+          <% end %>
+        </ul>
+<ul>
+
 
 </div>
     <% if @recipe.user_id == current_user.id %>

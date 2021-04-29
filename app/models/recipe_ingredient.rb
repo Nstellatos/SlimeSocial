@@ -9,6 +9,12 @@ class RecipeIngredient < ApplicationRecord
       self.ingredient.name if !self.id.nil?
     end
 
+    def ingredient_name=(name)
+        @ingredient = Ingredient.find_or_create_by(name: name)
+        self.ingredient = @ingredient
+      end
+
+
   #   def ingredient_attributes=(ingredient_attributes)
   #     ingredient_attributes.values.each do |i|
   #         if i != ""
@@ -23,8 +29,4 @@ end
     #     self.ingredient.name if !self.id.nil?
     #   end
     
-      def ingredient_name=(name)
-        @ingredient = Ingredient.find_or_create_by(name: name)
-        self.ingredient = @ingredient
-      end
-
+      
