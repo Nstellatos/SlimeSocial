@@ -2,10 +2,12 @@ class Recipe < ApplicationRecord
   belongs_to :user
   has_many :recipe_ingredients, dependent: :destroy
   has_many :ingredients, through: :recipe_ingredients
+  has_many :steps, dependent: :destroy
   
   default_scope -> { order(created_at: :desc) } #sets default order of recipes retrieved in db (newest to oldest)
 
   accepts_nested_attributes_for :recipe_ingredients, :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :steps, :reject_if => :all_blank, :allow_destroy => true
 
 
   validates :user_id, presence: true
