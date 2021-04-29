@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/auth/facebook/callback' => 'sessions#create'
 
-  resources :recipes
+  resources :recipes do 
+    resources :reviews 
+  end
   
 
   resources :users
