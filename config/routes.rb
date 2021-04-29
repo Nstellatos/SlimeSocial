@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  get '/auth/facebook/callback' => 'sessions#create'
 
-  resources :recipes, only: [:index, :show, :new, :create, :destroy]
+  resources :recipes
   
 
   resources :users
