@@ -1,5 +1,5 @@
 <div class="col-md-4">
-<%= image_tag @recipe.image if @recipe.image.attached? %>
+    <%= image_tag @recipe.recipe_img.url(:recipe_show), class: "recipe-show" %>
 </div>
 
 
@@ -11,10 +11,25 @@
     <p>
   
 <h1>Ingredients: </h1>
-   <% @recipe.recipe_ingredients.each do |i| %>
-        <% if i.ingredient.name%>
-            <li><%= i.ingredient.name %></li>
-        <% end %>
-    <% end %>
+
+
+
+
+ <ul>
+          <% @recipe.recipe_ingredients.each do |i| %>
+            <li><%= i.ingredient_name %></li>
+          <% end %>
+        </ul>
+
+</div>
+    <% if @recipe.user_id == current_user.id %>
+
+<%= link_to "Edit", edit_recipe_path(@recipe), class: "btn btn-custom"  %>
+<%= link_to "Delete", recipe_path(@recipe), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom"  %>
+
+<% end %>
+
+
 </div>
 </div>
+
