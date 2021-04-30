@@ -2,30 +2,48 @@
     <%= image_tag @recipe.recipe_img.url(:recipe_show), class: "recipe-show" %>
 </div>
 
-
 <div class="col-md-8">
 <div class="recipe-info">
     <h1 class="recipe-title"> <%= @recipe.title %> </h1>
 	<h2>posted by: <%= @recipe.user.name %> </h2>
+      <div class="average-review-rating" data-score=<%= @average_review %>></div>
+    <span class="number-of-reviews"> Based on <%=@recipe.reviews.count %> reviews </span>
+
     <p class="recipe-desc"> <%= @recipe.description %> </p>
     <p>
   
 <h1>Ingredients: </h1>
- <ul>
-          <% @recipe.recipe_ingredients.each do |i| %>
-            <li><%= i.ingredient_name %></li>
-          <% end %>
-        </ul>
+<ul>
+    <% @recipe.recipe_ingredients.each do |i| %>
+        <li><%= i.ingredient_name %></li>
+  <% end %>
+</ul>
+
 <h1>Steps </h1>
 <% @recipe.steps.each do |s| %>
-            <li><%= s.direction %></li>
-          <% end %>
-        </ul>
-<ul>
+    <li><%= s.direction %></li>
+  <% end %>
+        
+</div>
 
+<div class="row">
+
+	<div class="col-md-4">
+    <div class="reviews">
+<!-- Where the reviews/ratings will go -->
+<h1>Reviews</h1>
+    <%= render @recipe.reviews %>
+        <div>
+            <%= link_to "Add Review", new_recipe_review_path(@recipe), class: "btn btn-custom" %>
 
 </div>
-    <% if @recipe.user_id == current_user.id %>
+        </div>
+
+    </div>	
+
+</div>
+
+<% if @recipe.user_id == current_user.id %>
 
 <%= link_to "Edit", edit_recipe_path(@recipe), class: "btn btn-custom"  %>
 <%= link_to "Delete", recipe_path(@recipe), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom"  %>
@@ -36,3 +54,23 @@
 </div>
 </div>
 
+<script>
+	$('.review-rating').raty({
+		readOnly: true,
+		score: function() {
+			return $(this).attr('data-score');
+		},
+		path: '/assets/'
+	});
+</script>
+
+
+<script>
+	$('.average-review-rating').raty({
+		readOnly: true,
+		path: '/assets/',
+		score: function() {
+			return $(this).attr('data-score')
+		}
+	});
+</script>
