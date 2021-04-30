@@ -3,7 +3,7 @@ class Recipe < ApplicationRecord
   has_many :recipe_ingredients, dependent: :destroy
   has_many :ingredients, through: :recipe_ingredients
   has_many :steps, dependent: :destroy
-  has_many :reviews 
+  has_many :reviews, dependent: :destroy
   
   default_scope -> { order(created_at: :desc) } #sets default order of recipes retrieved in db (newest to oldest)
 
