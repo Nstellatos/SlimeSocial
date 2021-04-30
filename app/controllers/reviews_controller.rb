@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+    before_action :logged_in_user
     before_action :find_recipe
     before_action :find_review, only: [:edit, :update, :destroy]
 
