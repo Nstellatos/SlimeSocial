@@ -1,0 +1,18 @@
+<%= form_with(model: @review, url: [@recipe, @review], local: true) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+
+
+    <div id="rating-form">
+    <label>Rating</label>
+    </div>
+    <%= f.text_field :comment %>
+    <%= f.submit "Post", class: "btn-cutstom2" %>
+<% end %>
+
+
+<script>
+	$('#rating-form').raty({
+		path: '/assets/',
+		scoreName: 'review[rating]'
+	});
+</script>
