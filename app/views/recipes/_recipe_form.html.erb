@@ -17,6 +17,15 @@
 <div class="links">
 <%= link_to_add_association 'Add Ingredient', f, :recipe_ingredients %>
 
+<h3> Add Steps </h3>
+<%= f.fields_for :steps do |step| %>
+<%= render 'step_fields', f: step %>
+<% end %>
+
+<div class="links">
+<%= link_to_add_association 'Add Steps', f, :steps %>
+
+
 </div>
 
 <%= f.submit "Post", class: "btn-cutstom2" %>
