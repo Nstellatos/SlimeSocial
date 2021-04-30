@@ -7,11 +7,11 @@ class SessionsController < ApplicationController
     if auth_hash
       if user = User.find_by(email: auth_hash["info"]["email"])
         session[:user_id] = user.id
-        redirect_to user_path(user)
+        redirect_to root_path
       else
         user = User.create(email: auth_hash["info"]["email"], name: auth_hash["info"]["name"], password: SecureRandom.hex)
         session[:user_id] = user.id
-        redirect_to user_path(user)
+        redirect_to root_path
       end 
     else 
       user = User.find_by(email: params[:session][:email].downcase)
@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
       #module helper to log a user in
       log_in user 
       #redirect
-      redirect_to user 
+      redirect_to root_path
     else
       #if email/password not match
       flash.now[:danger] = "email or password is invalid"
