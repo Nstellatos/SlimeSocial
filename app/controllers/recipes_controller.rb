@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-    before_action :logged_in_user, only: [:index, :show, :new, :create, :destroy]
+    before_action :logged_in_user
     before_action :correct_user, only: [:edit, :update, :destroy]
 
     def index 
@@ -8,6 +8,11 @@ class RecipesController < ApplicationController
 
     def show 
         @recipe = Recipe.find(params[:id])
+        if @recipe.reviews.blank?
+			@average_review = 0
+		else
+			@average_review = @recipe.reviews.average(:rating).round(2)
+		end
     end 
 
     def new
