@@ -33,7 +33,6 @@ class UsersController < ApplicationController
     end
 
     def edit
-        @user = User.find(params[:id])
     end
 
     def update
@@ -47,8 +46,8 @@ class UsersController < ApplicationController
 
     def destroy
         User.find(params[:id]).destroy
-        flash[:success] = "User deleted"
-        redirect_to users_url
+        flash[:success] = "Sad to see you go!"
+        redirect_to root_url
     end
 
     private 

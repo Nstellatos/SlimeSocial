@@ -1,7 +1,22 @@
 <% if @slime_recipes.any? %>
 <ol class="recipes">
+<h1> Your Slimes</h1>
 <%= render @slime_recipes %>
+<% else %>
+<div class="recipes">
+<div class="center">
+<h4>you don't have any slimes to display</h4>
+<p>once you create a new slime recipe it will displayed here!</p>
+<%= link_to "create a new slime recipe!", new_recipe_path, class: "btn btn-lg btn-primary" %></div>
 </ol>
+</div>
+
+
+
+
+
 <%= will_paginate @slime_recipes,
     params: { controller: :static_pages, action: :home } %>
 <% end %>
+
+

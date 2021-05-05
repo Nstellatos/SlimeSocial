@@ -1,20 +1,364 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-/* styling that applies to all pages */
+
+
+/* Variables, mixins, etc.. */
+
+@mixin background-tile {
+	box-sizing: border-box;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 3px 3px 5px 6px #ccc;
+	padding: 1.5em 1.25em;
+	display: block;
+}
+
+
+/* General styles */
 
 body {
-    padding-top: 60px;
+	background-color: #f5f5f5;
+	font-family: 'Ubuntu', sans-serif;
 }
+
 section {
-    overflow: auto;
+	overflow: auto;
 }
+
 textarea {
-    resize: vertical;
+	resize: vertical;
 }
+
 .center {
-    text-align: center;
+	text-align: center;
 }
-.center h1 {
-    margin-bottom: 10px;
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Ubuntu', sans-serif;
+	font-weight: normal;
+	text-align: center;
+}
+
+p.alert, p.notice {
+	margin: 0;
+}
+
+
+/* Navbar/navigation styles */
+
+.navbar {
+	font-family: 'Ubuntu', sans-serif;
+	text-transform: uppercase;
+}
+.navbar-default {
+	background-color: #fff;
+	padding-bottom: 5px;
+	padding-top: 5px;
+
+	.navbar-nav > li > a {
+		color: #222;
+		&:hover {
+			color: darken(#f10f35, 5%);
+			transition: 0.5s;
+		}
+	}
+
+	.navbar-header {
+
+		.navbar-brand {
+			color: #222;
+			letter-spacing: 1.4px;
+		}
+
+	}
+
+	.dropdown-menu > li > a:hover {
+		background-color: darken(#f10f47, 5%);
+		color: #fff;
+	}
+
+	.navbar-nav > .open > a, .navbar-nav > .open > a:hover, .navbar-nav > .open > a:focus {
+		background-color: darken(#f10f80, 5%);
+		color: #fff;	
+	}
+
+}
+
+.dropdown-menu > .active > a {
+	background-color: #f10f66;
+	color: #fff;
+}
+
+
+/* Button/link styles */
+
+.btn-custom {
+	color: darken(#0fb1f1, 5%);
+	background-color: #fff;
+	border: 1px solid darken(#0fb1f1, 5%);
+	padding: 8px 20px;
+	border-radius: 5px;
+	font-family: 'Ubuntu', sans-serif;
+	&:hover {
+		text-decoration: none;
+		background-color: darken(#7dd7ee, 5%);
+		color: #fff;
+		transition: 0.5s;
+	}
+}
+
+.btn-custom2 {
+	color: #333;
+	background-color: #fff;
+	border: 1px solid #222;
+	padding: 8px 20px;
+	border-radius: 5px;
+	font-family: 'Ubuntu', sans-serif;
+	&:hover {
+		text-decoration: none;
+		background-color: #333;
+		color: #fff;
+		transition: 0.5s;
+	}	
+}
+
+.links {
+
+	.btn-custom {
+		padding: 3px 10px;
+		font-weight: 300;
+	}
+
+}
+
+.recipe-links {
+
+	.btn-custom {
+		padding: 3px 10px;
+		font-weight: 300;
+		margin-top: 40px;	
+	}
+
+}
+
+/* Recipe styles */
+
+
+
+.recipe {
+	position: relative;
+	margin: center;
+	height: 350px;
+	width: 250px;
+	display: block;
+	
+	@include background-tile; 
+}
+
+.recipe-show {
+	height: 475px;
+	width: 325px;
+	@include background-tile; 
+}
+
+.recipe-info {
+	@include background-tile; 
+
+	.recipe-title {
+		margin-top: 0;
+		font-size: 2em;
+	}
+
+	.avg-rating {
+		font-size: 1.5em;
+		margin-top: 15px;
+		margin-bottom: 5px;
+	}
+
+	.number-of-reviews {
+		font-size: 0.85em;
+		font-style: italic;
+	}
+
+	
+
+	.recipe-desc {
+		font-size: 1.05em;
+		line-height: 1.5;
+		margin-bottom: 15px;
+		margin-top: 15px;
+	}
+
+}
+
+
+
+/* sidebar */ 
+aside {
+    section.user_info {
+        margin-top: 20px;
+    }
+    section {
+        padding: 10px 0;
+        margin-top: 20px;
+        &:first-child {
+            border: 0;
+            padding-top: 0;
+        }
+        span {
+            display: block;
+            margin-bottom: 3px;
+            line-height: 1;
+        }
+        h1 {
+            font-size: 1.4em;
+            text-align: left;
+            letter-spacing: -1px;
+            margin-bottom: 3px;
+            margin-top: 0px;
+        }
+        }
+    }
+
+
+/* forms */ 
+
+input, textarea, select, .uneditable-input {
+    border: 1px solid #bbb;
+    width: 100%;
+    margin-bottom: 15px;
+}
+input {
+    height: auto !important;
+}
+#error_explanation {
+    color: red;
+    ul {
+        color:red;
+        margin: 0 0 30px 0;
+    }
+}
+.field_with_error {
+    @extend .has_error !optional;
+    .form_control {
+        color: $state-danger-text;
+    }
+}
+
+/* user index */ 
+.users {
+    list-style: none;
+    margin: 0;
+    li {
+        overflow: auto;
+        padding: 10px 0;
+        border-bottom: 1px solid $gray-lighter;
+    }
+}
+
+/* New Recipe Form styles */
+
+.new-recipe-form {
+	@include background-tile; 
+
+	h1 {
+		margin-top: 0;
+	}
+
+
+	#recipe_recipe_img {
+		margin-bottom: 10px;
+	}
+
+}
+
+
+/* Edit Recipe Form styles */
+
+.edit-recipe-form {
+
+	@include background-tile; 
+
+	h1 {
+		margin-top: 0;
+	}
+
+	#recipe_category_id {
+		margin-bottom: 10px;
+	}
+
+	#recipe_recipe_img {
+		margin-bottom: 10px;
+	}
+
+}
+/* Signup/Login form styles */
+
+.signup-form {
+	@include background-tile; 
+
+	h2 {
+		margin-top: 0;
+	}
+
+}
+
+.login-form {
+	 @include background-tile; 
+
+	h2 {
+		margin-top: 0;
+	}
+
+}
+/* Reviews styles */
+
+.reviews {
+
+	@include background-tile; 
+	margin-top: 40px;
+
+	h1 {
+		margin-top: 0;
+		margin-bottom: 15px;
+		font-size: 2em;
+	}
+
+	.review {
+		border-bottom: 1px solid gainsboro;
+		margin-bottom: 15px;
+		padding-bottom: 10px;
+
+		.review-comment {
+			font-size: 1.05em;
+			line-height: 1.5;
+		}
+
+	}
+
+	.new-review {
+		padding-top: 8px;
+	}
+
+}
+
+/* New/Edit review form styles */
+
+.new-review-form, .edit-review-form {
+	@include background-tile; 
+
+	h1 {
+		margin-top: 0;
+	}
+
+	#rating-form {
+		margin-bottom: 15px;
+
+		label {
+			display: block;
+		}
+
+	}
+
 }
